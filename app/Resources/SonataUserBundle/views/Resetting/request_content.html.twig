@@ -1,0 +1,36 @@
+{% extends "SonataUserBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ "title_user_resetting" | trans({}, 'SonataUserBundle') }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{ path('sonata_user_resetting_send_email') }}" method="POST" role="form" class="form-horizontal">
+                            {% if invalid_username is defined %}
+                                <div class="alert alert-danger">{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</div>
+                            {% endif %}
+
+                            <div class="form-group">
+                                <label for="username" class="col-sm-4 control-label required">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }} * </label>
+                                <div class="col-sm-8"><input class="form-control" type="text" id="username" name="username" required="required" /></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4"> </label>
+                                <div class="col-sm-8">
+                                    <input class="btn btn-primary" type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+                                </div>
+
+                                    
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

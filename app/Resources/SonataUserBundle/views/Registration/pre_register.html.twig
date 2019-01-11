@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Register</h2>
+    </div>
+    <div class="panel-body">
+        <form action="{{ path('fos_user_registration_register') }}" method="GET" class="_register form-horizontal">
+            <div id="form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="firstname">{{ "form.label_firstname"|trans({}, 'SonataUserBundle') }}</label>
+                    <div class="col-sm-9"><input type="text" id="firstname" name="firstname" maxlength="64" class="form-control"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="lastname">{{ "form.label_lastname"|trans({}, 'SonataUserBundle') }}</label>
+                    <div class="col-sm-9"><input type="text" id="lastname" name="lastname" maxlength="64" class="form-control"></div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <br />
+                <button type="submit" class="btn btn-success pull-right">{{ "registration.next"|trans({}, 'FOSUserBundle') }} <span class="glyphicon glyphicon-chevron-right"></span></button>
+            </div>
+        </form>
+    </div>
+</div>

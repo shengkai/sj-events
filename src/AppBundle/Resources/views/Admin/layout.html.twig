@@ -1,0 +1,23 @@
+{% extends "SonataAdminBundle::standard_layout.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    {# Add Custom Admin CSS if required #}
+    {# <link rel="stylesheet" href="{{ asset('bundles/bundlename/css/admin.css') }}" /> #}
+{% endblock %}
+
+
+{% block sonata_sidebar_search %}
+  {{ parent() }}
+{% if app.security.token and is_granted('ROLE_SONATA_ADMIN') %}
+<p class="view-site-link">
+  <a href="/" target="_blank">View Site <i class="fa fa-external-link"></i></a>
+</p>
+{% endif %}
+{% endblock sonata_sidebar_search %}
+
+{% block side_bar_after_nav %}
+    <p class="text-center sidebar-footer">
+      <a href="https://www.media-doc.com/" rel="noreferrer" target="_blank">MediaDoc Inc.</a><br />
+      <a href="mailto:support@media-doc.com?subject=Support Request" title="Email MediaDoc Inc."><small>Contact support&nbsp;<i class="fa fa-envelope"></i></small></a>
+    </p>
+{% endblock %}

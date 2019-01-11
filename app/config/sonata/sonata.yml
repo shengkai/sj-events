@@ -1,0 +1,66 @@
+#Sonata
+sonata_admin:
+    title:      MediaDoc Inc.
+    title_logo: /logo.png
+    templates:
+        layout:  AppBundle:Admin:layout.html.twig
+    dashboard:
+        groups:
+            sonata.admin.group.user:
+                label:           Manage Users
+                label_catalogue: FOSUserBundle
+                icon:            '<i class="fa fa-user"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
+        sonata.block.service.text: # used to if you plan to use Sonata user routes
+
+sonata_user:
+    security_acl: true
+    manager_type: orm # can be orm or mongodb
+    admin:
+        user:
+          class:      Application\Sonata\UserBundle\Admin\Model\UserAdmin
+
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    # user_class:     Sonata\UserBundle\Entity\BaseUser
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+
+    service:
+        user_manager: sonata.user.orm.user_manager
+
+    registration:
+        confirmation:
+            enabled: true
+        form:
+            type: Application\Sonata\UserBundle\Form\RegistrationFormType
+    profile:
+        form:
+            type: Application\Sonata\UserBundle\Form\Type\ProfileType
+
+    from_email:
+        address:        support@media-doc.com
+        sender_name:    "MediaDoc Inc."
+
+doctrine:
+
+    dbal:
+        types:
+            json: Sonata\Doctrine\Types\JsonType

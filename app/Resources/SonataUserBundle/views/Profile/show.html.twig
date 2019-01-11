@@ -1,0 +1,27 @@
+{% extends "SonataUserBundle:Profile:action.html.twig" %}
+
+{% block content %}
+     <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+            </div>
+        </div>
+    </div>
+    {% block sonata_profile_content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>{{ 'profile.welcome_heading'|trans({}, 'FOSUserBundle') }}</h2>
+                    <p>{{ 'profile.welcome_description'|trans({}, 'FOSUserBundle') }}</p>
+                </div>
+            </div>
+            {% block fos_user_content %}
+                {% include "SonataUserBundle:Profile:show_contents.html.twig" %}
+            {% endblock fos_user_content %}
+        </div>
+    {% endblock %}
+{% endblock %}
+{% block javascript %}
+    <script>$(".menu-my-dashboard").addClass("active");</script>
+{% endblock %}
